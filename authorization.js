@@ -19,6 +19,12 @@ const UserSchema = new Schema({
 function authorizationRouter(connection) {
   const User = connection.model('User', UserSchema);
   const router = express.Router()
+
+  /**
+   * Авторизация
+   * @param {String} username
+   * @param {String} password
+   */
   router.post('/login', body('email').isEmail(), body('password').isLength({ min: 5 }), async (req, res) => {
     const { username, password } = req.body
     const user = await User.findOne({ username })
@@ -31,6 +37,11 @@ function authorizationRouter(connection) {
     }
   })
 
+  /**
+   * Регистрация
+   * @param {String} username
+   * @param {String} password
+   */
   router.post('/register', body('email').isEmail(), body('password').isLength({ min: 5 }), async (req, res) => {
     const { username, password } = req.body
     const user = new User({ username, password: await bcrypt.hash(password, saltRounds) })

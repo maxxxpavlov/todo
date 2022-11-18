@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
 
-describe('Test the addLike method', () => {
+describe('Overall', () => {
     let app, conn, token;
     beforeAll(() => {
         conn = mongoose.createConnection('mongodb://root:example@127.0.0.1/');
@@ -22,15 +22,15 @@ describe('Test the addLike method', () => {
 
         return promise
     })
-    test('login incorrect', () => {
+    test('Unsuccesful login', () => {
         return request(app).post('/user/login').send({ username: 'fake@gank.tk', password: 'notrealpassword' }).expect(401)
     })
-    test('registration', async () => {
+    test('Registration', async () => {
         const res = await request(app).post('/user/register').send({ username: 'real@gank.tk', password: 'realpassword' }).expect(200)
         expect(jwt.decode(res.body.jwt).username).toBe('real@gank.tk')
 
     })
-    test('login correct', async () => {
+    test('Authorization', async () => {
         const res = await request(app).post('/user/login').send({ username: 'real@gank.tk', password: 'realpassword' }).expect(200)
         expect(jwt.decode(res.body.jwt).username).toBe('real@gank.tk')
         token = res.body.jwt
@@ -67,7 +67,7 @@ describe('Test the addLike method', () => {
         const res = await request(app).get('/todo').query({ token }).expect(200)
         expect(res.body.todos).toHaveLength(0)
     })
-    test('Create a lot of todo task and use pagination to get 10 of them', async () => {
+    test('Create a lot of todo tasks and use pagination to get 10 of them', async () => {
         for (let i = 1; i <= 15; i++) {
             await request(app).post('/todo').send({ token, text: 'wash hands after toilet #' + i }).expect(200)
         }
