@@ -21,12 +21,15 @@ POST /user/register
 GET /todo
   query:
     token: string; page?:number
+
 POST /todo
   body:
     text: string; token: string
+
 PUT /todo
   body:
     _id: string; token: string; text: string
+    
 DELETE /todo
   body: 
     _id: string; token: string
