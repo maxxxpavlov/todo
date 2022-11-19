@@ -1,35 +1,14 @@
 # todo
-```javascript
-docker-compose up
-npm i
-npm test
-npm run start
+```bash
+docker-compose up --build
 ```
 
-POST /user/login
-  body:
-    username: String; password: String
-  returns:
-    token
+Go to [127.0.0.1:3000](http://127.0.0.1:3000/)
 
-POST /user/register
-  body:
-    username: String; password: String
-  returns:
-    token
 
-GET /todo
-  query:
-    token: string; page?:number
-
-POST /todo
-  body:
-    text: string; token: string
-
-PUT /todo
-  body:
-    _id: string; token: string; text: string
-    
-DELETE /todo
-  body: 
-    _id: string; token: string
+## Running test
+```bash
+docker-compose up mongo
+npm ci
+npm   test
+```

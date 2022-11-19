@@ -60,7 +60,7 @@ function app(connection) {
         await Todo.findOneAndDelete({ _id: mongoose.Types.ObjectId(req.body._id) })
         res.json({})
     })
-    app.get('/', async (req, res) => { res.end(':)') })
+    // app.get('/', async (req, res) => { res.end(':)') })
 
     return app
 }

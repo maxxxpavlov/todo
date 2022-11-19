@@ -44,6 +44,7 @@ function authorizationRouter(connection) {
    */
   router.post('/register', body('email').isEmail(), body('password').isLength({ min: 5 }), async (req, res) => {
     const { username, password } = req.body
+    // username should be unique
     const user = new User({ username, password: await bcrypt.hash(password, saltRounds) })
     await user.save()
     token = jwt.sign({ username }, privateKey, { algorithm: 'RS256' });

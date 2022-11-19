@@ -1,0 +1,159 @@
+openapi: 3.0.3
+info:
+  title: TODO
+servers:
+  - url: http://127.0.0.1:3000/
+tags:
+  - name: todo
+    description: manipulating todo
+  - name: user
+    description: Operations about user
+paths:
+  /todo:
+    get:
+      tags:
+        - todo
+      summary: get todo tasks
+      parameters:
+        - in: query
+          name: token
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: page
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          description: unauthorized
+    put:
+      tags:
+        - todo
+      summary: Update an existing todo task
+      description: Update an existing todo task
+      requestBody:
+        description: Update
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text: 
+                  type: string
+                  example: "Pour chocolate powder in my tasty banana milkshake"
+                _id:
+                  type: string
+                token:
+                  type: string
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          description: unauthorized
+    post:
+      tags:
+        - todo
+      summary: Add new todo task
+      requestBody:
+        description: Create a new pet in the store
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  example: 'Repair uncle car'
+                token:
+                  type: string
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          description: Unauthorized
+    delete:
+      tags:
+        - todo
+      summary: delete an existing todo task
+      description: delete an existing todo task
+      requestBody:
+        description: Delete
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                token:
+                  type: string
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+        '401':
+          description: unauthorized
+  /user/register:
+    post:
+      tags:
+        - user
+      summary: Create user
+      requestBody:
+        description: User data
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: stevie@oxford.gov 
+                password:
+                  type: string
+                  example: ilovevanillacakes
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: jwt token
+  /user/login:
+    post:
+      tags:
+        - user
+      summary: login user
+      requestBody:
+        description: User data
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: stevie@oxford.gov 
+                password:
+                  type: string
+                  example: ilovevanillacakes
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: jwt token
+  
