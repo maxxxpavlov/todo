@@ -59,7 +59,7 @@ paths:
         - todo
       summary: Add new todo task
       requestBody:
-        description: Create a new pet in the store
+        description: Create a new task
         content:
           application/json:
             schema:
