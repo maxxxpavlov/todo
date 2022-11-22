@@ -61,6 +61,7 @@ function authorizationMiddleware(req, res, next) {
   } catch (err) {
     res.status(401);
     res.json({error: true});
+    return;
   }
   if (token && username) {
     res.locals.username = username;

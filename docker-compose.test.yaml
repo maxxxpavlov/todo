@@ -4,15 +4,14 @@ version: '3.1'
 services:
   todo-api:
     build: .
-    restart: always
-    ports:
-      - 3000:3000
+    command: npm test
     environment:
       - mongourl=mongodb://root:example@mongo/
 
   mongo:
     image: mongo
     restart: always
+    command: mongod --quiet --logpath /dev/null
     ports:
       - 27017:27017
     environment:

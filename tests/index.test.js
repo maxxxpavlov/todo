@@ -1,12 +1,12 @@
 const request = require('supertest');
-const createApp = require('../src/app');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const createApp = require('../src/app');
 
 describe('Overall', () => {
   let app, conn, token;
   beforeAll(() => {
-    conn = mongoose.createConnection('mongodb://root:example@127.0.0.1/');
+    conn = mongoose.createConnection(process.env.mongourl || 'mongodb://root:example@127.0.0.1/');
     app = createApp(conn);
     const promise = new Promise((resolve) => {
       conn.once('open', async () => {
