@@ -3,10 +3,13 @@
 docker-compose up --build
 ```
 
-Go to [127.0.0.1:3000](http://127.0.0.1:3000/)
+Документация будет доступна по адресу [127.0.0.1:3000](http://127.0.0.1:3000/)
 
 
-## Running test
+## Запуск тестов
 ```bash
 docker-compose -f ./docker-compose.test.yaml up --exit-code-from todo-api --build
 ```
+
+## Версия на golang
+[https://github.com/maxxxpavlov/todo-golang](https://github.com/maxxxpavlov/todo-golang)
